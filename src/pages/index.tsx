@@ -1,0 +1,5 @@
+export { Home } from './Home'
+export { Quiz } from './Quiz'
+export { Score } from './Score'
+export { Setting } from './Setting'
+export { Category } from './Category'
