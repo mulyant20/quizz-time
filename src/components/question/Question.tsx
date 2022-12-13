@@ -47,7 +47,7 @@ export default function Question({ question, duration, totalQuestion }: Props) {
     if (!play) return
 
     let timeout = setTimeout(() => {
-      // navigate('/score')
+      navigate('/score')
     }, duration * 1000)
 
     return () => clearTimeout(timeout)

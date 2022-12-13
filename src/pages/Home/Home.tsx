@@ -27,8 +27,6 @@ export default function Home({ name }: Props) {
 const categories: category[] = [
   { id: 11, name: 'Film' },
   { id: 18, name: 'Computers' },
-  { id: 19, name: 'Mathematics' },
   { id: 20, name: 'Mythology' },
-  { id: 30, name: 'Gadgets' },
   { id: 31, name: 'Japanese Anime & Manga' },
 ]

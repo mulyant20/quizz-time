@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Question } from '../../components/question'
-import { Layout, Timer } from '../../components'
+import { Timer } from '../../components'
 import { UseScoreContext } from '../../context/ScoreContext'
 import { IscoreContext } from '../../interface/score'
 import { question } from '../../interface/question'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams, NavigateFunction, useNavigate } from 'react-router-dom';
 import { category } from '../../interface/category'
 
 type Props = {
@@ -20,6 +20,7 @@ interface quizResponse {
 
 export default function Quiz({ duration, totalQuestion }: Props) {
   let { category } = useParams()
+  const navigate: NavigateFunction = useNavigate()
   const [quiz, setQuiz] = useState<question[] | null>(null)
   const [play, setPlay] = useState<boolean>(false)
   const { resetScore } = UseScoreContext() as IscoreContext
@@ -37,10 +38,8 @@ export default function Quiz({ duration, totalQuestion }: Props) {
       setQuiz(data.results)
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.log('error message: ', error.message)
         return error.message
       } else {
-        console.log('unexpected error: ', error)
         return 'An unexpected error occurred'
       }
     }
@@ -49,13 +48,14 @@ export default function Quiz({ duration, totalQuestion }: Props) {
   useEffect(() => {
     resetScore()
     getData(category)
-
+    
     let timeout = setTimeout(() => {
       setPlay(true)
     }, 2800)
-
+    
     return () => {
       clearTimeout(timeout)
+      setQuiz(null)
     }
   }, [])
 

@@ -8,17 +8,18 @@ type Props = {
 
 export default function TimerBar({ duration, isPlay }: Props) {
   const [timeLeft, setTimeLeft] = useState<number>(0)
+  
   const length = useMemo(() => {
-    return timeLeft * 100 / 120
+    return timeLeft * 100 / duration
   }, [timeLeft])
 
   useEffect(() => {
-    setTimeLeft(120)
+    setTimeLeft(duration)
 
     if(!isPlay) return
 
     let interval = setInterval(() => {
-        setTimeLeft(prev => prev - 1)
+      setTimeLeft(prev => prev - 1)
     }, 1000)
 
     return () => clearInterval(interval)
