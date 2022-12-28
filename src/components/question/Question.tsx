@@ -28,7 +28,7 @@ export default function Question({ question, duration, totalQuestion }: Props) {
   }, [index])
 
   const handleAnswer = (answer: string) => {
-    setPlay(false)    
+    setPlay(false)
     answer === question[index].correct_answer && updateScore()
 
     let timeout = setTimeout(() => {
@@ -57,10 +57,16 @@ export default function Question({ question, duration, totalQuestion }: Props) {
     <>
       <div className='p-6 bg-purple-600 mt-4 mb-8 rounded-lg'>
         <div className='flex justify-center w-full h-fit mb-8'>
-          <TimerBar duration={duration} isPlay={play}/>
+          <TimerBar duration={duration} isPlay={play} />
         </div>
-        <p className='text-white text-lg'>{index + 1} <span className='text-white/80 text-[15px]'>/ {totalQuestion}</span></p>
-        <h1 dangerouslySetInnerHTML={{ __html: question[index].question }} className='text-2xl mb-6 text-white'/>
+        <p className='text-white text-lg'>
+          {index + 1}{' '}
+          <span className='text-white/80 text-[15px]'>/ {totalQuestion}</span>
+        </p>
+        <h1
+          dangerouslySetInnerHTML={{ __html: question[index].question }}
+          className='text-2xl mb-6 text-white'
+        />
       </div>
       <ul className='flex flex-col gap-4'>
         {answers.map((ans, index) => (
@@ -68,7 +74,6 @@ export default function Question({ question, duration, totalQuestion }: Props) {
             key={index}
             onclick={() => play && handleAnswer(ans)}
             ans={ans}
-            classname="w-full py-2 px-6 flex justify-start rounded bg-gray-200/20 hover:bg-purple-700 text-gray-800 hover:text-white"
           />
         ))}
       </ul>

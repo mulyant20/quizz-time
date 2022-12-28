@@ -27,6 +27,7 @@ export default function Navbar() {
             <span className='font-bold'><AiFillSetting /></span> Setting
           </Link>
         </div>
+        
       </div>
     </div>
   )
