@@ -18,7 +18,7 @@ export default function Card({ title, onclick, initial, color }: Props) {
         {title}
       </p>
       <div className='w-[calc(100%+16px)] h-full absolute top-0 left-1/2 -translate-x-1/2 flex justify-between items-center'>
-        {initial?.map(init => <p className='text-[5rem] font-semibold text-white/40'>{init}</p>)}
+        {initial?.map((init, index) => <p key={index} className='text-[5rem] font-semibold text-white/40'>{init}</p>)}
       </div>
     </div>
   )
